@@ -10,7 +10,7 @@ function Square({ number, isDisabled }) {
 
     if (lastNumber >= "1" && lastNumber <= "9") setValue(lastNumber);
 
-    if (eventNumber == "") setValue("");
+    if (eventNumber === "") setValue("");
   };
 
   return (
