@@ -47,14 +47,14 @@ function Board() {
         {
           [0,1,2,3,4,5,6,7,8].map(rowIndex => {
             return (
-              <tr className={styles.row__container} key={rowIndex}>
+              <tr key={rowIndex}>
                 {
                   [0,1,2,3,4,5,6,7,8].map(colIndex => {
                     return (
                       <td key={rowIndex + "" + colIndex}>
                         <input
                           value={board[rowIndex][colIndex]}
-                          className={`${styles.inputCell} ${styles[getCellStyle(rowIndex,colIndex)]}`}
+                          className={`${styles["input-cell"]} ${styles[getCellStyle(rowIndex,colIndex)]}`}
                           onChange={(event) => onChangeInputCellHandler(event,rowIndex,colIndex)}
                           onFocus={(event) => onFocusHandler(event,rowIndex,colIndex)}
                         />

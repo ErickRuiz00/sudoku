@@ -4,15 +4,17 @@
 }
 
 .board {
-  display: grid;
+  margin-left: auto;
+  margin-right: auto;
   grid-template-columns: repeat(9, auto);
   grid-template-rows: repeat(9, auto);
   justify-content: center;
   border-collapse: collapse;
-  border: 5px solid black;
+  border-left: 3px solid#000;
+  border-top: 3px solid #000;
 }
 
-.inputCell {
+.input-cell {
   width: 50px;
   height: 50px;
   font-size: 20px;
@@ -25,15 +27,20 @@
   border: 1px solid #000;
 }
 
-tr:nth-of-type(3n) {
+.selected {
+  background: rgba(11, 194, 194, 0.722);
 }
 
-.selected {
-  background: cyan;
+tr:nth-child(3n) input {
+  border-bottom: 3px solid #000;
+}
+
+td:nth-child(3n) input {
+  border-right: 3px solid #000;
 }
 
 .highlighted {
-  background: rgba(117, 168, 168, 0.722);
+  background: rgba(11, 194, 194, 0.298);
 }
 
 input::-webkit-outer-spin-button,
