@@ -12,7 +12,7 @@ function Board() {
                   ['','','','','','','','',''],
                   ['','','','','','','2','',''],
                   ['3','','','','','','','',''],
-                  ];
+                  ];  
 
   const [board,setBoard] = useState(matrix);
   const [selectedCell,setSelectedCell] = useState([]);
@@ -45,11 +45,11 @@ function Board() {
     <table className={styles.board}>
       <tbody>
         {
-          [0,1,2,3,4,5,6,7,8].map(rowIndex => {
+          board.map((boardRow,rowIndex) => {
             return (
-              <tr key={rowIndex}>
+              <tr>
                 {
-                  [0,1,2,3,4,5,6,7,8].map(colIndex => {
+                  boardRow.map((cell,colIndex) => {
                     return (
                       <td key={rowIndex + "" + colIndex}>
                         <input
@@ -63,7 +63,7 @@ function Board() {
                   })
                 }
               </tr>
-            );
+            )
           })
         }
       </tbody>
