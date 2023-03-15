@@ -1,20 +1,8 @@
 import React, { useState } from "react";
 import styles from "./Board.module.css";
 
-function Board() {
-
-  const matrix = [['0','2','','','','','','',''],
-                  ['','','','','','','','',''],
-                  ['','','','','','','','',''],
-                  ['','','','','','','','',''],
-                  ['','','','','','','','',''],
-                  ['','','','','','','','',''],
-                  ['','','','','','','','',''],
-                  ['','','','','','','2','',''],
-                  ['3','','','','','','','',''],
-                  ];  
-
-  const [board,setBoard] = useState(matrix);
+function Board({sudokuBoard}) {
+  const [board,setBoard] = useState(sudokuBoard);
   const [selectedCell,setSelectedCell] = useState([]);
 
   const onChangeInputCellHandler = (event,row,col) => {
@@ -47,7 +35,7 @@ function Board() {
         {
           board.map((boardRow,rowIndex) => {
             return (
-              <tr>
+              <tr key={rowIndex}>
                 {
                   boardRow.map((cell,colIndex) => {
                     return (
