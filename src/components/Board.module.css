@@ -27,8 +27,12 @@
   border: 1px solid #000;
 }
 
+.input-cell:focus {
+  outline: none;
+}
+
 .selected {
-  background: rgba(11, 194, 194, 0.722);
+  background: #550c64a1;
 }
 
 tr:nth-child(3n) input {
@@ -40,7 +44,7 @@ td:nth-child(3n) input {
 }
 
 .highlighted {
-  background: rgba(11, 194, 194, 0.298);
+  background: #74118854;
 }
 
 input::-webkit-outer-spin-button,

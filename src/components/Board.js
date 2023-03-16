@@ -9,7 +9,7 @@ function Board({sudokuBoard}) {
     const enteredCharacter = event.target.value.slice(-1);
     if(enteredCharacter >= "1" && enteredCharacter <= "9") {
       setBoard(prevBoardState => {
-        const updatedBoard = prevBoardState.map(boardRow => boardRow);
+        const updatedBoard = [...prevBoardState];
         updatedBoard[row][col] = enteredCharacter;  
         return updatedBoard;
       });
