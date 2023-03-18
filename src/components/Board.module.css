@@ -32,7 +32,11 @@
 }
 
 .selected {
-  background: #550c64a1;
+  background: #9f0dbc51;
+}
+
+.wrong-value {
+  color: red;
 }
 
 tr:nth-child(3n) input {
@@ -44,7 +48,7 @@ td:nth-child(3n) input {
 }
 
 .highlighted {
-  background: #74118854;
+  background: #550c6465;
 }
 
 input::-webkit-outer-spin-button,

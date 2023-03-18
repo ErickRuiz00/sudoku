@@ -10,6 +10,20 @@ const INITIAL_BOARD = [
     ['', '', '', '', '', '', '', '', '']
 ];
 
+//true = is editable, false = not editable
+export const INITIAL_CELL_STATE = [
+    [false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, false, false]
+];
+
 const VALUES = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 const getRandomValue = (limit) => {
@@ -103,6 +117,7 @@ const getValidValuesInCell = (sudoku, row, col) => {
 export const generateSudoku = (difficulty) => {
     const newSolvedSudoku = solveSudoku(fillDiagonals(INITIAL_BOARD.map(boardRow => [...boardRow])));
 
+    const newCellState = INITIAL_CELL_STATE.map(cellStateRow => [...cellStateRow]);
     const newSudoku = newSolvedSudoku.map(boardRow => [...boardRow]);
     let cellsToRemove = [];
     for (let i = 0; i < 9; i++)
@@ -114,7 +129,8 @@ export const generateSudoku = (difficulty) => {
     for (let i = 0; i < numberOfCellsToRemove; i++) {
         const [row, col] = cellsToRemove[i];
         newSudoku[row][col] = "";
+        newCellState[row][col] = true;
     }
 
-    return newSudoku;
+    return [newSolvedSudoku,newSudoku,newCellState];
 };
