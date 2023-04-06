@@ -51,10 +51,10 @@ function Game() {
         setSolvedBoard(newSolvedSudoku);
         setCellState(newCellState);
         setIsModalActive(false);
-        setGameIsCompleted(false);}
+        setGameIsCompleted(false);
         setSeconds(0);
         setMinutes(0);
-    };
+    }
 
     const onCreateGameDiscardHandler = () => {
         setIsModalActive(false);
@@ -64,10 +64,17 @@ function Game() {
     setDifficulty(selectedDifficulty);
   };
 
-  const checkIsSolved = () => {
-
-  }
-
+  const onCellChangeHandler = (event,row, col) => {
+    const enteredCharacter = event.target.value.slice(-1);
+    if (enteredCharacter >= "1" && enteredCharacter <= "9") {
+        setBoard(prevBoardState => {
+            const updatedBoard = prevBoardState.map(boardRow => [...boardRow])
+            updatedBoard[row][col] = enteredCharacter;
+            return updatedBoard;
+        });
+    }
+  };
+  
   return (
     <>
       {isModalActive && (
