@@ -25,6 +25,7 @@
   user-select: none;
   cursor: default;
   border: 1px solid #000;
+  color: #111;
 }
 
 .input-cell:focus {
@@ -32,7 +33,7 @@
 }
 
 .selected {
-  background: #550c64a1;
+  background: #550c64b4;
 }
 
 tr:nth-child(3n) input {

@@ -12,9 +12,14 @@ function Selector(props) {
 
     return (
         <div className={styles.selector}>
-            <button className={`${styles.button} ${selectedButton === 0 && styles.selected}`} onClick={() => changeSelectedButton(0)}>Easy</button>
-            <button className={`${styles.button} ${selectedButton === 1 && styles.selected}`} onClick={() => changeSelectedButton(1)}>Medium</button>
-            <button className={`${styles.button} ${selectedButton === 2 && styles.selected}`} onClick={() => changeSelectedButton(2)}>Hard</button>
+            <button className={`${styles.button} ${selectedButton === 0 && styles.selected}`} 
+            onClick={() => changeSelectedButton(0)}>Easy</button>
+
+            <button className={`${styles.button} ${selectedButton === 1 && styles.selected}`} 
+            onClick={() => changeSelectedButton(1)}>Medium</button>
+
+            <button className={`${styles.button} ${selectedButton === 2 && styles.selected}`} 
+            onClick={() => changeSelectedButton(2)}>Hard</button>
         </div>
     );
 }

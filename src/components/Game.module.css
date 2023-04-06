@@ -1,4 +1,12 @@
 .controls {
     padding: 10px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+
+}
+
+.controls Button{
+    border-radius: 50px;
 }

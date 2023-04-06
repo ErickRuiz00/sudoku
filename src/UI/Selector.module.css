@@ -1,13 +1,19 @@
+*{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
 .selector {
-    text-align: center;
+    text-align: center; 
+    padding: 10px;
 }
 
 .button {
-    font: inherit;
-    border: 1px solid #4f005f;
+    padding: 12px 30px;
+    border: none;
     background: #4f005f;
     color: white;
-    padding: 0.25rem 1rem;
     cursor: pointer;
 }
 
@@ -25,11 +31,11 @@
 .button:active {
     background: #741188;
     border-color: #741188;
+    
 }
 
 .selected {
     background: #741188;
-    border-color: #741188;
 }
 
 .button:focus {

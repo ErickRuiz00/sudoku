@@ -3,10 +3,11 @@
     border: 1px solid #4f005f;
     background: #4f005f;
     color: white;
-    padding: 0.25rem 1rem;
+    padding: 8px 20px;
     cursor: pointer;
     margin: 2.5px;
     border-radius: 5px;
+    font-size: 15px;
 }
 
 .button:hover,
