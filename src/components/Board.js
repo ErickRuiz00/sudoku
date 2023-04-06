@@ -1,19 +1,11 @@
 import React, { useState } from "react";
 import styles from "./Board.module.css";
 
-function Board({sudokuBoard}) {
-  const [board,setBoard] = useState(sudokuBoard);
+function Board({sudokuBoard,solvedSudokuBoard,sudokuCellState,onCellChange}) {
   const [selectedCell,setSelectedCell] = useState([]);
 
   const onChangeInputCellHandler = (event,row,col) => {
-    const enteredCharacter = event.target.value.slice(-1);
-    if(enteredCharacter >= "1" && enteredCharacter <= "9") {
-      setBoard(prevBoardState => {
-        const updatedBoard = [...prevBoardState];
-        updatedBoard[row][col] = enteredCharacter;  
-        return updatedBoard;
-      });
-    }
+    onCellChange(event,row,col);
   };
 
   const onFocusHandler = (event,row,col) => {
@@ -33,7 +25,7 @@ function Board({sudokuBoard}) {
     <table className={styles.board}>
       <tbody>
         {
-          board.map((boardRow,rowIndex) => {
+          sudokuBoard.map((boardRow,rowIndex) => {
             return (
               <tr key={rowIndex}>
                 {
@@ -41,10 +33,11 @@ function Board({sudokuBoard}) {
                     return (
                       <td key={rowIndex + "" + colIndex}>
                         <input
-                          value={board[rowIndex][colIndex]}
-                          className={`${styles["input-cell"]} ${styles[getCellStyle(rowIndex,colIndex)]}`}
+                          value={sudokuBoard[rowIndex][colIndex]}
+                          className={`${styles["input-cell"]} ${styles[getCellStyle(rowIndex,colIndex)]} ${sudokuBoard[rowIndex][colIndex] != solvedSudokuBoard[rowIndex][colIndex] && styles['wrong-value']}`}
                           onChange={(event) => onChangeInputCellHandler(event,rowIndex,colIndex)}
                           onFocus={(event) => onFocusHandler(event,rowIndex,colIndex)}
+                          readOnly={!sudokuCellState[rowIndex][colIndex]}
                         />
                       </td>
                     )
