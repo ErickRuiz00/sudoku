@@ -34,7 +34,7 @@ function Board({sudokuBoard,solvedSudokuBoard,sudokuCellState,onCellChange}) {
                       <td key={rowIndex + "" + colIndex}>
                         <input
                           value={sudokuBoard[rowIndex][colIndex]}
-                          className={`${styles["input-cell"]} ${styles[getCellStyle(rowIndex,colIndex)]} ${sudokuBoard[rowIndex][colIndex] != solvedSudokuBoard[rowIndex][colIndex] && styles['wrong-value']}`}
+                          className={`${styles["input-cell"]} ${styles[getCellStyle(rowIndex,colIndex)]} ${sudokuBoard[rowIndex][colIndex] != solvedSudokuBoard[rowIndex][colIndex] && styles['wrong-value']} ${sudokuCellState[rowIndex][colIndex]&&styles['correct']}`}
                           onChange={(event) => onChangeInputCellHandler(event,rowIndex,colIndex)}
                           onFocus={(event) => onFocusHandler(event,rowIndex,colIndex)}
                           readOnly={!sudokuCellState[rowIndex][colIndex]}

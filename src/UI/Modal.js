@@ -17,12 +17,12 @@ function Overlay(props) {
             </header>
 
             <div className={styles.content}>
-                <p>{props.message}</p>
                 {props.children}
+                <p>{props.message}</p>
             </div>
 
             <footer className={styles.actions}>
-                <Button onClick={props.onConfirm}>Okay</Button>
+                <Button onClick={props.onConfirm}>{props.buttonText}</Button>
                 <Button onClick={props.onDiscard}>Cancel</Button>
             </footer>
 
@@ -34,7 +34,7 @@ function Modal(props) {
     return (
         <>
             {ReactDOM.createPortal(<Backdrop onDiscard={props.onDiscard} />, document.getElementById("backdrop-root"))}
-            {ReactDOM.createPortal(<Overlay title={props.title} message={props.message} onConfirm={props.onConfirm} onDiscard={props.onDiscard}>{props.children}</Overlay>, document.getElementById("overlay-root"))}
+            {ReactDOM.createPortal(<Overlay title={props.title} message={props.message} onConfirm={props.onConfirm} onDiscard={props.onDiscard} buttonText={props.buttonConfirmText}>{props.children}</Overlay>, document.getElementById("overlay-root"))}
         </>
     );
 }

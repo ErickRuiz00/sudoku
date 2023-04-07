@@ -36,6 +36,10 @@
   background: #9f0dbc51;
 }
 
+.correct{
+  color: blue;
+}
+
 .wrong-value {
   color: red;
 }

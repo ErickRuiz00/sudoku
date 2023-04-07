@@ -1,7 +1,9 @@
 *{
-    color: white;
+    /* color: black; */
     letter-spacing: 2px;
 }
+
+
 
 .backdrop {
     position: fixed;
@@ -22,17 +24,21 @@
 
 .header {
     background: #4f005f;
+    color: #fff;
     padding: 1rem;
 }
 
 .content {
+    display: flex;
     padding-top: 1rem;
+    align-items: center;
+    justify-content: center;
 }
 
 .actions {
     padding: 1rem;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-evenly;
 }
 
 @media (min-width: 768px) {
@@ -40,4 +46,9 @@
         left: calc(50% - 20rem);
         width: 40rem;
     }
+}
+
+img{
+    text-align: center;
+    width: 200px;
 }
