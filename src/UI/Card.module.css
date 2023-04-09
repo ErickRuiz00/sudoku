@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 .card {
     border-radius: 12px;
     background-color: white;

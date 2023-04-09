@@ -1,3 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Outline&family=Londrina+Solid:wght@300;400&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
 .App {
     text-align: center;
+}
+
+.AppContainer{
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    top: 0;
+    align-items: flex-start;
+    /* width: fit-content; */
+    /* height: 100vh; */
+    background: rgb(241, 217, 253);
+    /* border: 2px solid red; */
+} 
+
+.description{
+    width: 40vw;
+    height: 100vh;
+    background: #4f005f;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+
+
+.description::before{
+    position: fixed;
+    z-index: 10;
+    content: "";
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 40vw;
+    height: 100%;
+}
+
+.gameTitle{
+    color: #fff;
+    font-family: 'Londrina Solid', cursive;
+    text-align: center;
+    position: relative;
+    opacity: 0;
+    font-size: 100px;
+}
+
+.SU{
+    animation: showOnScreen 2s cubic-bezier(0.76,-0.04, 1, 0.93) 1 forwards;
+}
+
+.DO{
+    animation: showOnScreen 2s cubic-bezier(0.76,-0.04, 1, 0.93) 1 forwards;
+    animation-delay: 1s;
+}   
+
+.KU{
+    animation: showOnScreen 2s cubic-bezier(0.76,-0.04, 1, 0.93) 1 forwards;
+    animation-delay: 2s;
+}
+
+.gameFeature{
+    color: #fff6;
+    font-family: 'Londrina Outline', cursive;
+    text-align: center;
+    font-size: 35px;
+    animation: showOnScreen 2s cubic-bezier(0, 0.9, 0.58, 1) 1 forwards;
+    animation-delay: 4.5s;
+    position: relative;
+    opacity: 0;
+    left: -1000px;
+}
+
+@keyframes showOnScreen {
+    0%{
+        left: -1000px;
+        opacity: 1;
+    }
+
+    /* 75%{
+        left: 10px;
+    } */
+
+    100%{
+        left: 0;
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .description{
+        width: 100vw;
+        height: 100px;
+        flex-direction: row;
+        font-size: 100px;
+        align-items: center;
+        /* display: none; */
+    }
+
+    .description::before{
+        width: 100vw;
+        height: 100px;
+    }
+
+    .AppContainer{
+        grid-template-columns: 1fr;
+        grid-auto-rows: 50px 1fr;
+    } 
+
+    .gameTitle{
+        font-size: 50px;
+    }
+
+    .gameFeature{
+        display: none;
+    }
 }

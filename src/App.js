@@ -3,7 +3,15 @@ import Game from "./components/Game";
 
 function App() {
   return (
-    <Game />
+    <div className="AppContainer">
+      <div className="description">
+        <p className="gameTitle SU">SU</p>
+        <p className="gameTitle DO">DO</p>
+        <p className="gameTitle KU">KU</p>
+        <p className="gameFeature">SOLVER</p>
+      </div>
+      <Game />
+    </div>
   );
 }
 

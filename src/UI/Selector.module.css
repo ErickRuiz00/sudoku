@@ -2,6 +2,7 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-transform: uppercase;
     font-size: 15px;
+    box-sizing: border-box;
 }
 
 .selector {
@@ -40,4 +41,11 @@
 
 .button:focus {
     outline: none;
+}
+
+@media screen and (max-width:500px) {
+    .button{
+        padding: 8px 15px;
+        font-size: 10px;
+    }
 }

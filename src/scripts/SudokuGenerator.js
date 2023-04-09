@@ -125,8 +125,8 @@ export const generateSudoku = (difficulty) => {
             cellsToRemove.push([i, j]);
 
     cellsToRemove = shuffle(cellsToRemove);
-    // const numberOfCellsToRemove = [43, 49, 56].at(difficulty);
-    const numberOfCellsToRemove = 1;
+    const numberOfCellsToRemove = [43, 49, 56].at(difficulty);
+    // const numberOfCellsToRemove = 1;
     for (let i = 0; i < numberOfCellsToRemove; i++) {
         const [row, col] = cellsToRemove[i];
         newSudoku[row][col] = "";
