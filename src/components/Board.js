@@ -35,17 +35,14 @@ function Board({
               <tr key={rowIndex}>
                 {boardRow.map((cell, colIndex) => {
                   const isEditable = sudokuCellState[rowIndex][colIndex];
+                  const cellColor = sudokuBoard[rowIndex][colIndex] !== solvedSudokuBoard[rowIndex][colIndex] ? "wrong-value" : (isEditable)? "correct" : "";
                   return (
                     <td key={rowIndex + "" + colIndex}>
                       <input
                         value={sudokuBoard[rowIndex][colIndex]}
                         className={`${styles["input-cell"]} ${
                           styles[getCellStyle(rowIndex, colIndex)]
-                        } ${
-                          sudokuBoard[rowIndex][colIndex] !==
-                            solvedSudokuBoard[rowIndex][colIndex] &&
-                          styles["wrong-value"]
-                        } ${isEditable && styles["correct"]}`}
+                        } ${styles[cellColor]}`}
                         onChange={(event) =>
                           onChangeInputCellHandler(event, rowIndex, colIndex)
                         }

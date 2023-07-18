@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Outline&family=Londrina+Solid:wght@300;400&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -19,6 +21,8 @@
 }
 
 .input-cell {
+  font-family: 'Londrina Solid', cursive;
+  font-weight: 300;
   width: 50px;
   height: 50px;
   font-size: 25px;
@@ -38,7 +42,7 @@
 }
 
 .correct{
-  color: #45f;
+  color: #00f;
 }
 
 .wrong-value {
@@ -69,5 +73,4 @@ input::-webkit-inner-spin-button {
     height: 30px;
     font-size: 15px;
   }
-  
 }

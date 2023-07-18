@@ -6,6 +6,7 @@ import Selector from "../UI/Selector";
 import { generateSudoku, INITIAL_CELL_STATE } from "../scripts/SudokuGenerator";
 import styles from "./Game.module.css";
 import Timer from "../UI/Timer";
+import SolverBoard from "./SolverBoard";
 
 const EMPTY_BOARD = [
   ["", "", "", "", "", "", "", "", ""],
@@ -22,6 +23,7 @@ const EMPTY_BOARD = [
 function Game() {
   //Definning states.
   const [isModalActive, setIsModalActive] = useState(false);
+  const [isSolvingModalActive, setIsSolvingModalActive] = useState(false);
   const [difficulty, setDifficulty] = useState(0);
   const [board, setBoard] = useState(EMPTY_BOARD);
   const [solvedBoard, setSolvedBoard] = useState(EMPTY_BOARD);
@@ -30,6 +32,7 @@ function Game() {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [mistakes, setMistakes] = useState(0);
+  const [solvingSteps, setSolvingSteps] = useState(EMPTY_BOARD);
 
   const formatTime = (time) => (time < 10 ? "0" + time : time + "");
   const time = {
@@ -57,7 +60,7 @@ function Game() {
   };
 
   const createNewSudoku = () => {
-    const [newSolvedSudoku, newSudoku, newCellState] =
+    const [newSolvedSudoku, newSudoku, newCellState, solvingSteps] =
       generateSudoku(difficulty);
     setBoard(newSudoku);
     setSolvedBoard(newSolvedSudoku);
@@ -67,15 +70,28 @@ function Game() {
     setSeconds(0);
     setMinutes(0);
     setMistakes(0);
+    setSolvingSteps(solvingSteps);
   };
 
   const onCreateGameDiscardHandler = () => {
     setIsModalActive(false);
   };
 
+  const onSolvingSimulationDiscard = () => {
+    setIsSolvingModalActive(false);
+  };
+
   const playAgainHandler = () => {
     setGameOver(null);
     setMistakes(0);
+  };
+
+  const skipVisualization = () => {
+    setBoard(solvedBoard);
+    setIsSolvingModalActive(false);
+    setGameOver(3);
+    setCellState(INITIAL_CELL_STATE);
+    setIsModalActive(true);
   };
 
   const onChangeSelectionHandler = (selectedDifficulty) => {
@@ -104,6 +120,63 @@ function Game() {
     }
   };
 
+  const onSolveHandler = () => {
+    setIsSolvingModalActive(true);
+  };
+
+  function GameOver() {
+    var modalContent = {
+      title: "",
+      buttonConfirmText: "",
+      message: "",
+      image: "",
+    };
+
+    // Win
+    if (gameOver === 1) {
+      modalContent = {
+        title: "Congralutions",
+        buttonConfirmText: "Play Again!",
+        message: `You have finished the game in ${formatTime(
+          time.minutes
+        )}:${formatTime(time.seconds)} minutes`,
+        image: "/img/congrats.gif",
+      };
+    }
+    // Lose
+    if (gameOver === 2) {
+      modalContent = {
+        title: "You lose!",
+        buttonConfirmText: "Try Again!",
+        message: "Oh no! You made 3 mistakes :(",
+        image: "/img/tryagain.gif",
+      };
+    }
+
+    if (gameOver === 3) {
+      modalContent = {
+        title: "BOARD SOLVED",
+        buttonConfirmText: "Play Again!",
+        message: "We finished the board for you, checkout the solution :)!!",
+        image: "/img/tenkiu.gif",
+      };
+    }
+
+    return (
+      <>
+        <Modal
+          title={modalContent.title}
+          buttonConfirmText={modalContent.buttonConfirmText}
+          onConfirm={playAgainHandler}
+          onDiscard={onCreateGameDiscardHandler}
+          message={modalContent.message}
+        >
+          <img src={modalContent.image} alt="" />
+        </Modal>
+      </>
+    );
+  }
+
   return (
     <div className={styles.gameContainer}>
       {isModalActive && (
@@ -117,51 +190,31 @@ function Game() {
         </Modal>
       )}
 
-      {isModalActive && gameOver === 1 && (
+      {isModalActive && gameOver && <GameOver />}
+
+      {isSolvingModalActive && (
         <Modal
-          title="Congratulations!"
-          buttonConfirmText="Play Again"
-          onConfirm={playAgainHandler}
-          onDiscard={onCreateGameDiscardHandler}
-          message={`You have finished the game in ${formatTime(
-            time.minutes
-          )}:${formatTime(time.seconds)} minutes`}
+          title="Backtracking Visualization"
+          buttonConfirmText="Skip"
+          onConfirm={skipVisualization}
+          onDiscard={onSolvingSimulationDiscard}
         >
-          <img
-            src="https://thumbs.dreamstime.com/b/muestra-de-congrats-con-las-estrellas-82816939.jpg"
-            alt=""
-          />
+          <SolverBoard board={board} solvingSteps={solvingSteps} />
         </Modal>
       )}
-
-      {isModalActive && gameOver === 2 && (
-        <Modal
-          title="You lose"
-          buttonConfirmText="Try Again!"
-          onConfirm={playAgainHandler}
-          onDiscard={onCreateGameDiscardHandler}
-          message="Oh no! You made 3 mistakes :("
-        >
-          <img
-            src="https://www.westfield.ma.edu/PersonalPages/draker/edcom/final/webprojects/sp18/sectiona/solarq/tryagain.png"
-            alt=""
-          />
-        </Modal>
-      )}
-      
-      
-
       <Board
         sudokuBoard={board}
         solvedSudokuBoard={solvedBoard}
         sudokuCellState={cellSate}
         onCellChange={onCellChangeHandler}
-      ><div className={styles.mistakes}>Mistakes {mistakes}/3</div></Board>
+      >
+        <div className={styles.mistakes}>Mistakes {mistakes}/3</div>
+      </Board>
 
       <div className={styles.controls}>
         <Button onClick={onCreateNewGameHandler}>New Game</Button>
         <Timer time={time} gameCompleted={gameOver} />
-        <Button>Solve</Button>
+        <Button onClick={onSolveHandler}>Solve</Button>
       </div>
     </div>
   );

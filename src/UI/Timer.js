@@ -1,17 +1,17 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Timer.module.css";
 
 function Timer({ time, gameCompleted }) {
   const [stopTimerHandler, setStopTimerHandler] = useState(null);
-  
+
   useEffect(() => {
     const timer = setInterval(() => {
       time.setSeconds((prevSeconds) => {
         if (prevSeconds < 59) return prevSeconds + 1;
-        else {
-          time.setMinutes((prevMinutes) => prevMinutes + 1);
-          return (prevSeconds = 0);
-        }
+
+        time.setMinutes((prevMinutes) => prevMinutes + 1);
+        return (prevSeconds = 0);
+        
       });
     }, 1000);
     setStopTimerHandler(timer);
@@ -21,8 +21,7 @@ function Timer({ time, gameCompleted }) {
     };
   }, [time.seconds]);
 
-  if(gameCompleted)
-    clearInterval(stopTimerHandler);
+  if (gameCompleted) clearInterval(stopTimerHandler);
 
   return (
     <div className={styles.timer}>

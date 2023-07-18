@@ -21,7 +21,7 @@ function Overlay(props) {
 
       <footer className={styles.actions}>
         <Button onClick={props.onConfirm}>{props.buttonText}</Button>
-        <Button onClick={props.onDiscard}>Cancel</Button>
+        <Button onClick={props.onDiscard}>Close</Button>
       </footer>
     </Card>
   );

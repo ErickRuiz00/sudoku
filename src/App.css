@@ -13,10 +13,7 @@
     grid-template-columns: 40% 1fr;
     top: 0;
     align-items: flex-start;
-    /* width: fit-content; */
-    /* height: 100vh; */
     background: rgb(241, 217, 253);
-    /* border: 2px solid red; */
 } 
 
 .description{
@@ -63,7 +60,7 @@
 }
 
 .gameFeature{
-    color: #fff6;
+    color: #fffb;
     font-family: 'Londrina Outline', cursive;
     text-align: center;
     font-size: 35px;
@@ -80,10 +77,6 @@
         opacity: 1;
     }
 
-    /* 75%{
-        left: 10px;
-    } */
-
     100%{
         left: 0;
         opacity: 1;
@@ -97,7 +90,6 @@
         flex-direction: row;
         font-size: 100px;
         align-items: center;
-        /* display: none; */
     }
 
     .description::before{
