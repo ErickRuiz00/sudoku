@@ -140,7 +140,7 @@ function Game() {
         message: `You have finished the game in ${formatTime(
           time.minutes
         )}:${formatTime(time.seconds)} minutes`,
-        image: "/img/congrats.gif",
+        image: "img/congrats.gif",
       };
     }
     // Lose
@@ -149,7 +149,7 @@ function Game() {
         title: "You lose!",
         buttonConfirmText: "Try Again!",
         message: "Oh no! You made 3 mistakes :(",
-        image: "/img/tryagain.gif",
+        image: "img/tryagain.gif",
       };
     }
 
@@ -158,7 +158,7 @@ function Game() {
         title: "BOARD SOLVED",
         buttonConfirmText: "Play Again!",
         message: "We finished the board for you, checkout the solution :)!!",
-        image: "/img/tenkiu.gif",
+        image: "img/tenkiu.gif",
       };
     }
 
